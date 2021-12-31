@@ -22,3 +22,6 @@ You haven't chosen a word.
 Please input the words into `{filename}` and rerun the program."""
     )
     exit()
+
+length = len(word)
+guess = list("_" * length)  # Replace "_" with correct characters with every guess.
