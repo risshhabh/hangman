@@ -3,14 +3,18 @@ from random import choice  # Randomly pick a word.
 filename = r"secret.txt"
 
 # Remove all comments from `secret.txt`
-with open(filename, "r+") as f:
-    file = [line.strip() for line in f.read().splitlines()]
+try:
+    with open(filename, "r+") as f:
+        file = [line.strip() for line in f.read().splitlines()]
 
-    # Remove all comments from list of lines in `filename`.
-    for ind, val in enumerate(file):
-        if val[0] == "#":
-            file.pop(ind)
-
+        # Remove all comments from list of lines in `filename`.
+        for ind, val in enumerate(file):
+            if len(val) == 0 or val[0] == "#":
+                file.pop(ind)
+except FileNotFoundError:
+    print("Hmm... it seems like your file does not exist. I made it for you, please enter some words into it.")
+    open(filename, "x")
+    exit()
 
 # Choose word, if file is empty, end program.
 try:
